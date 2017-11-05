@@ -1,0 +1,80 @@
+.modalClass {
+  display:            flex;
+  justify-content:    center;
+  align-items:        center;
+  margin:             0px auto 100px auto;
+  overflow:           auto;
+  border-radius:      4px;
+  outline:            none;
+  background-color:   #fff;
+  box-shadow:         0px 0px 5px #333;
+  padding:            20px;
+}
+
+.modalOverlayClass {
+  position:           fixed;
+  top:                0;
+  left:               0;
+  right:              0;
+  bottom:             0;
+  display:            flex;
+  justify-content:    center;
+  align-items:        center;
+  background-color:   rgba(204, 195, 195, 0.70);
+  z-index:            99;
+}
+
+.form {
+  margin:             5px;
+}
+
+.bookInfo {
+  text-transform:     uppercase;
+  color:              #eee;
+  font-size:          1.2em;
+  margin:             10px;
+
+}
+
+.underline {
+  border-bottom:      1px solid #aaa;
+  margin:             2px auto;
+}
+
+.modalHeader {
+  display:            flex;
+  justify-content:    flex-end;
+}
+
+.empty {
+  display:            none;
+}
+
+.tradeWindow {
+  display:            flex;
+  border-top:         1px solid #d1d1d1;
+  padding-top:        10px;
+}
+
+.openTradeModalContainer {
+  display:            flex;
+  flex-direction:     column;
+}
+
+.column {
+  display:            flex;
+  flex-direction:     column;
+  margin:             5px;
+}
+
+.trades {
+  margin:             5px 0px;
+  border:             1px solid grey;
+  border-radius:      2px;
+  padding:            5px;
+  cursor:             pointer;
+}
+
+.trades:hover {
+  background-color:   #999;
+}

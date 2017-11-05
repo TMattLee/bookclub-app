@@ -1,0 +1,101 @@
+.pageContainer{
+  display:            flex;
+  flex-direction:     column;
+  align-items:        center;
+  justify-content:    center;
+  text-transform:     uppercase;
+}        
+
+.itemContainer {
+  width:              700px;
+}
+
+
+.modalClass {
+  display:            flex;
+  justify-content:    center;
+  align-items:        center;
+  margin:             0px auto 100px auto;
+  background:         #fff;
+  overflow:           auto;
+  border-radius:      4px;
+  outline:            none;
+  background-color:   #777;
+  border:             1px solid #fff;
+
+}
+
+.modalOverlayClass {
+  position:           fixed;
+  top:                0;
+  left:               0;
+  right:              0;
+  bottom:             0;
+  display:            flex;
+  justify-content:    center;
+  align-items:        center;
+  background-color:   rgba(204, 195, 195, 0.70);
+  z-index:            999;
+
+}
+
+
+.section {
+  display:            flex;
+  padding:            5px;
+  text-transform:     uppercase;
+  font-Family:        "Fira Sans", Helvetica, Arial, sans-serif;
+}
+
+.title {
+  width:              60px;
+  text-transform:     uppercase;
+  color:              #fff;
+  font-Family:        "Fira Sans", Helvetica, Arial, sans-serif;
+}
+
+
+.buttonContainer {
+  padding:            5px;
+  display:            flex;
+  justify-content:    space-between;
+}
+
+.addABookButton {
+  border:             1px solid grey;
+  border-radius:      2px;
+  padding:            5px;
+  cursor:             pointer;
+}
+
+.addABookButton:hover {
+  background-color:   #999;
+}
+
+.openTradesButton {
+  border:             1px solid grey;
+  border-radius:      2px;
+  padding:            5px;
+  cursor:             pointer;
+}
+
+.openTradesButton:hover {
+  background-color:   #999;
+}
+
+.submitButton {
+  
+}
+
+.form {
+  margin:             5px;
+}
+
+.bookInfo {
+  font-Family:        "Fira Sans", Helvetica, Arial, sans-serif;
+  text-transform:     uppercase;
+  color:              #fff;
+  font-size:          1.2em;
+  margin:             10px;
+
+}

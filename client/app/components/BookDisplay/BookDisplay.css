@@ -1,0 +1,20 @@
+.bookCover {
+  cursor:                 pointer;
+  display:                inline-block;
+  vertical-align:         top;
+  text-align:             center;
+  line-height:            25px;
+  color:                  #eee;
+  font-size:              0.75em;
+  background-color:       #0bf;
+  margin:                 5px;
+  height:                 150px;
+  width:                  95px;
+  position:               relative;
+}
+
+.bookContainer {
+  height:                 150px;
+  width:                  95px;
+  position:               relative;
+}

@@ -1,0 +1,87 @@
+
+.headerContainer{
+  display:            flex;
+  justify-content:    space-around;
+  width:              100%;
+  margin:             0px 0px 10px 0px;
+  background-color:   #fff;
+  box-shadow:         0px 0px 2px;
+  position:           relative;
+  z-index:            100;
+  top:                0;
+  left:               0;
+  right:              0;
+  height:             40px;
+}
+
+.headerContent{
+  width:              790px;
+  margin:             12px auto;
+}
+
+.headerContentLeft{
+  float:              left;
+  display:            flex;
+}
+
+.headerContentRight{
+  float:              right;
+  display:            flex;
+}
+
+.tabStyle{
+  color:              #222;
+  text-decoration:    none;
+  text-transform:     uppercase;
+  margin:             0px 2px;
+  cursor:             pointer;
+}
+
+.active{
+  color:              #222;
+  text-decoration:    none;
+  text-transform:     uppercase;
+  margin:             0px 2px;
+  border-bottom:      2px solid black;
+  cursor:             pointer;
+}
+
+.fadedTabStyle{
+  color:              #ccc;
+  text-decoration:    none;
+  text-transform:     uppercase;
+}
+
+.twitterImg{
+  width:              14px;
+  height:             14px;
+  margin:             0px 5px;
+}
+  
+.modalClass {
+  display:            flex;
+  justify-content:    center;
+  align-items:        center;
+  margin:             0px auto 100px auto;
+  background:         #fff;
+  overflow:           auto;
+  border-radius:      4px;
+  outline:            none;
+  background-color:   #777;
+  border:             1px solid #fff;
+
+}
+
+.modalOverlayClass {
+  position:           fixed;
+  top:                0;
+  left:               0;
+  right:              0;
+  bottom:             0;
+  display:            flex;
+  justify-content:    center;
+  align-items:        center;
+  background-color:   rgba(204, 195, 195, 0.70);
+  z-index:            999;
+
+}

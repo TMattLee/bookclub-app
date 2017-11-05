@@ -1,0 +1,50 @@
+'use strict';
+
+const express = require('../server.js').express;
+const app = require('../server.js').app;
+const Books = require('../models/books.js');
+const User = require('../models/user.js');
+const verifyUserHasBook = require('./verifyUserHasBook.js');
+const verifyUserDoesNotHaveBook = require('./verifyUserDoesNotHaveBook.js');
+const addBookToUser = require('./addBookToUser.js');
+const removeBookFromUser = require('./removeBookFromUser.js');
+
+const tradeBooks = ( userId1, userId2, isbn1, isbn2 ) => {
+  return new Promise( ( resolve, reject ) => {
+    verifyUserHasBook( userId1, isbn1 )
+    .then( ()=>{ 
+      verifyUserDoesNotHaveBook( userId1, isbn2 )
+      .then( ()=>{
+        verifyUserHasBook( userId1, isbn1 )
+        .then( ()=>{
+          verifyUserDoesNotHaveBook( userId2, isbn1 )
+          .then( ()=>{
+            addBookToUser( userId1, isbn2 )
+            .then( () => {
+              removeBookFromUser( userId1, isbn1 ) 
+              .then( () => {
+                addBookToUser( userId2, isbn1 )
+                .then( () => {
+                  removeBookFromUser( userId2, isbn2 )
+                  .then( () => {
+                    resolve( "TRADE_SUCCESSFUL")
+                  })
+                  .catch( error => reject( error ) )
+                })
+                .catch( error => reject( error ) )
+              })
+              .catch( error => reject( error ) )
+            })
+            .catch( error => reject( error ) )
+          })
+          .catch ( error => reject( error ) )
+        })
+        .catch ( error => reject( error ) )
+      })
+      .catch ( error => reject( error ) )
+    })
+    .catch ( error => reject( error ) )
+  })
+}
+
+module.exports = tradeBooks;
