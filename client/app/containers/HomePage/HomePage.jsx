@@ -26,7 +26,7 @@ class HomePage extends Component {
       <div className={ styles.itemContainer } >
         <div className={ styles.itemTitle } >
           <div className={ styles.containerHeader }  >
-            Book List
+            Book List { props.isAuthorized ? ':  Click on a book to start a trade'  : '' }
           </div>
         </div>
         <div>

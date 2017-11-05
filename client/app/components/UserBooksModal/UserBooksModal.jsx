@@ -31,7 +31,7 @@ class UserBooksModal extends Component {
 
   render(){
     const { state, props } = this;
-    console.log( 'letere', props)
+    
     if ( !( props.userBookList && props.userToTradeWith ) ) return <div></div>;
     
     const userBooks = props.userBookList.map( ( book, key ) => {

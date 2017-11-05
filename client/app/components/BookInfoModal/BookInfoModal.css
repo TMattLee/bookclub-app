@@ -36,8 +36,16 @@
 }
 
 .tradeButton {
+  margin:             5px 0px;
+  border:             1px solid grey;
   border-radius:      2px;
-  background-color:   cyan;
+  padding:            5px;
+  cursor:             pointer;
+  width:              110px;
+}
+
+.tradeButton:hover {
+  background-color:   #999;
 }
 
 .modalClass {

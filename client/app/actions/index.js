@@ -196,7 +196,6 @@ export const addBookToDatabase = ( isbn10 ) =>{
     })
     .then( response => {
       const data = response.data;
-      console.log( 'le data',data )
       dispatch({
         type:                 ADD_BOOK,
         bookList:             data.bookList,

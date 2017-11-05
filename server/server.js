@@ -598,46 +598,6 @@ const server = app.listen( port, (err) => {
   }
 });
 
-
-/*------------------------------------------------------------------------------
----------------------------------- Socket.io------------------------------------
-------------------------------------------------------------------------------*/
-
-const io = require( 'socket.io' )( server, {
-  path: '/socket.io'
-});
-
-io.on( 'connection', ( socket ) => {  
-  //console.log('a user connected');
-
-  socket.on( 'disconnect', () => {
-    //console.log('user disconnected');
-  });
-  
-  socket.on( 'GOT_NEW_DATA', ( payload ) => {
-    if( payload && payload.data.length > 0 ){
-      if( payload.data.length > 10 ) {  // Only ten open trade can exist at once
-        payload.data.shift();
-      }
-      /*TickerList.findByIdAndUpdate(
-        {
-          _id: "5996582df36d28126e472aef"
-        },
-        {
-          data: payload.data
-        },
-        {
-          new: true,
-          upsert: true
-        },
-        ( error, doc ) => {
-          if ( error ) console.log( error );
-          io.emit( 'RECEIVE_DATA', { data: doc.data } )
-        }
-      );*/
-    }
-  });
-});
 //------------------------------------------------------------------------------
 module.exports = {
   express: express,

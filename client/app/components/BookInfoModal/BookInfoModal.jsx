@@ -26,7 +26,6 @@ class BookInfoModal extends Component {
   
   render(){
     const { props } = this;
-    console.log( 'props is', props)
     const { 
       key, 
       bookData, 
@@ -80,7 +79,7 @@ class BookInfoModal extends Component {
             { 
               isAuthorized ?
                 isOwned ?
-                  <div>ALREADY OWNED </div>
+                  <div>ALREADY OWNED BY YOU </div>
                 :
                   <div>
                     <div className={ styles.tradeButton } onClick={ event =>  this.handleClick( event ) }> Request Trade </div>

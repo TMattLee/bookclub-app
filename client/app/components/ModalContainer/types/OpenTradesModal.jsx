@@ -17,6 +17,7 @@ const OpenTradeModal = ( props ) => {
     event.preventDefault();
     props.actions.tradeBook( tradeData );
     props.actions.removeOpenTrade( tradeData.tradeId );
+    hideOpenTradesModal();
   }
   
   const cancelTrade = ( event, tradeId ) => {

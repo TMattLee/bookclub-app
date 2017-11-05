@@ -43,7 +43,7 @@ class BookInfoModal extends Component {
     >
       <form onSubmit={ this.handleSubmit } encType="x-www-urlencode">
         <div>
-          Enter ISBN10 
+          Enter ISBN10 { ':  ' }
           <input name="isnb10" />
           <button type="submit"> Submit </button>
         </div>
