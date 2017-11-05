@@ -8,7 +8,6 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const axios = require('axios');
-const bcrypt = require('bcryptjs');
 const open = require('open');
 const jwt = require('jsonwebtoken');
 const passport = require("passport");
