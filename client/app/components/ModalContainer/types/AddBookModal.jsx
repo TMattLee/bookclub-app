@@ -11,6 +11,11 @@ class BookInfoModal extends Component {
     super();
     this.hideAddBookModal = this.hideAddBookModal.bind( this );
     this.handleSubmit = this.handleSubmit.bind( this );
+    this.state = {
+      message:  '',
+    }
+    this.exp = /^[0-9]{10}$/;
+
   }
   
   hideAddBookModal(){
@@ -20,7 +25,14 @@ class BookInfoModal extends Component {
   handleSubmit( event ){
     event.preventDefault()
     let isbn10 = event.target[ 0 ].value;
-    this.props.actions.addBookToDatabase( isbn10 );
+    if( this.exp.test( isbn10 ) ){
+      this.props.actions.addBookToDatabase( isbn10 );
+    }
+    else{
+      this.setState({
+        message: 'Please Enter a 10 digit number'
+      })
+    }
   }
   
   render(){
@@ -44,11 +56,11 @@ class BookInfoModal extends Component {
       <form onSubmit={ this.handleSubmit } encType="x-www-urlencode">
         <div>
           Enter ISBN10 { ':  ' }
-          <input name="isnb10" />
+          <input name="isnb10" maxLength="10" />
           <button type="submit"> Submit </button>
         </div>
+        <div style={{ color: 'red', height: '10px', marginTop: '5px'}}> { this.state.message } </div>
       </form>
-    
     </Modal>
   }
 };

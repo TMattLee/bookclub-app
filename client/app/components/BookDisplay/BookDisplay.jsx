@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { showTradeModal } from '../../actions/index.js';
 import { bindActionCreators } from 'redux';
-import Overlay from 'react-overlays';
 
 import * as styles from './BookDisplay.css';
 import * as actions from '../../actions/index.js';

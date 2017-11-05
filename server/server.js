@@ -112,7 +112,7 @@ var jwtOptions = {};
 jwtOptions.jwtFromRequest = sessionExtractor;
 jwtOptions.secretOrKey = process.env.JWT_SECRET;
 jwtOptions.jsonWebTokenOptions = {
-  expiresIn: 20*60,
+  expiresIn: 10*60,
   httpOnly: true,
   secure: true
 };
@@ -139,7 +139,7 @@ app.use(
     jwt:null,
     secret: process.env.SESSION_SECRET,
     cookie: { 
-      maxAge: 1000*60*5,
+      maxAge: 1000*60*10,
       httpOnly: true,
       secure: true,
       path: '/',

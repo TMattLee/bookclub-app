@@ -3,6 +3,8 @@ import { Link, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
+import { Redirect } from 'react-router-dom';
+
 
 import BookDisplayContainer from '../../components/BookDisplayContainer/BookDisplayContainer.jsx';
 import * as actions from '../../actions/index.js';
@@ -54,10 +56,15 @@ class DashBoard extends Component {
   
   render(){
     const { props } = this;
-    const { isAuthorized, bookList, userId } = props
+    const { isAuthorized, bookList, userId, done } = props
     
-    if( ! ( isAuthorized && bookList && bookList.length > 0 )  ){
-      return <div> Checking... </div>
+    if( ! ( done && bookList && bookList.length > 0 )  ){
+      this.props.actions.getBookList();
+      return <div> Loading... </div>
+    }
+    
+    if( !this.props.isAuthorized ){
+      return <Redirect to="/bookclub-app/login" />
     }
     
     const booksYouOwn = bookList.filter( ( value ) => {

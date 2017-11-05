@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { showTradeModal } from '../../actions/index.js';
 import { bindActionCreators } from 'redux';
-import Overlay from 'react-overlays';
 
 import * as styles from './BookDisplayContainer.css';
 import * as actions from '../../actions/index.js';
@@ -20,17 +19,21 @@ const BookDisplayContainer = ( props ) => {
       return <BookDisplay bookToDisplay={ book } key={ key } bookDisplayElement={ key } />
     });
   }
+  
   if( !props.isHomePage && props.isAuthorized){
     let userBooks = null;
+    
     if( props.userBookList ){
       userBooks = props.userBookList.map( ( userBook, key ) => {
         return <BookDisplay bookToDisplay={ userBook } key={ key } isOwnedByUser={ true } bookDisplayElement={ key }/>
       });
     }
+    
     return <div className={ styles.books }>
       { userBooks }
     </div>
   }
+  
   return <div className={ styles.books }>
     { books }
   </div>
