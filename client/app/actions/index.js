@@ -16,7 +16,6 @@ export const CHANGE_DISPLAY = 'CHANGE_DISPLAY';
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const GET_BOOK_LIST = 'GET_BOOK_LIST';
 export const GET_USER_BOOK_LIST = 'GET_USER_BOOK_LIST';
-export const GET_OTHER_USER_BOOK_LIST = 'GET_OTHER_USER_BOOK_LIST';
 
 export const ADD_BOOK = 'ADD_BOOK';
 export const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
@@ -155,26 +154,6 @@ export const getUserBookList = () => {
       const { data } = response;
       dispatch({
         type:         GET_USER_BOOK_LIST,
-        userBookList: data.userBookList,
-        done:         true,
-      });
-    })
-    .catch( error => {
-      console.log( 'error getting data' );
-    });
-  }
-}
-
-export const getOtherUserBookList = ( userId ) => {
-  return ( dispatch ) => {
-    axios({ 
-      method: 'GET',
-      url:    '/bookclub-app/getotheruserbooklist'
-    })
-    .then( response => {
-      const { data } = response;
-      dispatch({
-        type:         GET_OTHER_USER_BOOK_LIST,
         userBookList: data.userBookList,
         done:         true,
       });

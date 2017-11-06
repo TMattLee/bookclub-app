@@ -30,6 +30,7 @@ const OpenTrade = require('./models/openTrades');
 const verifyUserHasBook = require('./lib/verifyUserHasBook.js');
 const verifyUserDoesNotHaveBook = require('./lib/verifyUserDoesNotHaveBook.js');
 const addBookToUser = require('./lib/addBookToUser.js');
+const addBookToUserAndDatabase = require('./lib/addBookToUserAndDatabase.js');
 const removeBookFromUser = require('./lib/removeBookFromUser.js');
 const tradeBooks = require('./lib/tradeBooks.js');
 const removeTrade = require('./lib/removeTrade.js');
@@ -235,100 +236,13 @@ app.get( '/getuserbooklist', passport.authenticate( 'jwt', { session: false, fai
 app.post( '/addbook', passport.authenticate( 'jwt', { session: false, failureRedirect: '/bookclub-app/login' } ), ( req, res ) => {
   const { isbn10 } = req.body;
   const userId = req.user.userId;
-  // First test if book is in the database
-  Books.findOne(
-    {
-      isbn10: isbn10
-    },
-    ( error, book ) =>{
-      if( error ) console.log( error );
-      
-      // If book is not in database then add it to user's booklist
-      if( !book || book.length <= 0 ){
-        axios({
-          method: 'GET',
-          url: `http://openlibrary.org/api/books?format=json&jscmd=data&bibkeys=ISBN:${ isbn10 }`
-        })
-        .then( response => {
-          
-          let data = response.data[ `ISBN:${ isbn10 }`]
-          if( !data ){
-            console.log( 'data is ', data )
-          }
-          
-          Books.create({
-            id:                 isbn10,
-            title:              ( data.title + ( data.subtitle ? ": " + data.subtitle : '' ) ) || null ,
-            author:             data.authors ? data.authors[0].name || null : null,
-            publisher:          data.publishers ? data.publishers[0].name || null  : null,
-            publishDate:        data.publish_date || null,
-            cover:              data.cover ? data.cover.medium || null : null,
-            isbn10:             data.identifiers.isbn_10[0] || null,
-            ownedBy:            ['ADMIN']
-          },
-          ( error, newBook ) => {
-            if( error ) console.log( error );
-            
-            addBookToUser( userId, isbn10)
-            .then( ( user ) => {
-              Books.find( {},
-                ( error, docs ) =>{
-                  if( error ) console.log( error );
-                  if( docs && docs.length > 0 ){
-                    res.send( {
-                      bookList:             docs,
-                      message:              'ADDED', 
-                      book:                 newBook, 
-                      userBookList:         user.bookList,
-                    } );
-                    return;
-                  }
-                }
-              );
-            })
-            .catch( error => console.log( error ) );
-          })
-        })
-        .catch( error => {
-          console.log( error );
-        });
-      }
-      else{
-        
-        // if book is in database then check if user owns it or not.
-        let notOwnedByUser = true;
-        for( let i = 0; i < book.ownedBy.length; i++){
-          if( book.ownedBy[i] === userId ) notOwnedByUser = false;
-        }
-        if( notOwnedByUser ){
-          addBookToUser( userId, isbn10)
-          .then( ( user ) => {
-            Books.find( {},
-              ( error, docs ) =>{
-                if( error ) console.log( error );
-                if( docs && docs.length > 0 ){
-                  res.send({
-                    bookList:             docs,
-                    message:              'ADDED', 
-                    book:                 null, 
-                    userBookList:         user.bookList
-                  });
-                  return;
-                }
-              }
-            );
-          })
-          .catch( error => console.log( error ) );
-        }
-        else{
-          res.send({
-            message:  'ALREADY_OWNED'
-          });
-          return;
-        }
-      }
-    }
-  );
+
+  addBookToUserAndDatabase( userId, isbn10 )
+  .then( data =>{
+    res.send( data );
+    console.log( data )
+  })
+  .catch( error => console.log( error ) );
 });
 
 app.post( '/removebook', passport.authenticate( 'jwt', { session: false, failureRedirect: '/bookclub-app/login' } ), ( req, res ) => {

@@ -46,21 +46,15 @@ function currentState( state = initialState, actions ){
     case 'INITIALIZE_STATE':
       return Object.assign( {}, state, initialState);
     
-    case 'GET_BOOK_LIST':
+    case 'GET_BOOK_LIST':                                   // Gets a list of all books in database
       return Object.assign( [], state, {
         bookList:           actions.bookList,
         done:               actions.done,
       });
       
-    case 'GET_USER_BOOK_LIST':
+    case 'GET_USER_BOOK_LIST':                              //Gets list of book owned by current in user
       return Object.assign( [], state, {
         userBookList:       actions.userBookList,
-        done:               actions.done,
-      });
-      
-    case 'GET_OTHER_USER_BOOK_LIST':
-      return Object.assign( [], state, {
-        otherUserBookList:  actions.userBookList,
         done:               actions.done,
       });
     
