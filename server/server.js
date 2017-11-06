@@ -240,7 +240,6 @@ app.post( '/addbook', passport.authenticate( 'jwt', { session: false, failureRed
   addBookToUserAndDatabase( userId, isbn10 )
   .then( data =>{
     res.send( data );
-    console.log( data )
   })
   .catch( error => console.log( error ) );
 });
@@ -503,9 +502,9 @@ app.post('/removeopentrade', passport.authenticate('jwt', { session: false, fail
 
 const port = process.env.PORT;
 
-const server = app.listen( port, (err) => {  
-  if (err) {
-    console.log(err);
+const server = app.listen( port, ( error ) => {  
+  if ( error ) {
+    console.log( error );
   } else {
     open( `http://localhost:${port}` );
   }
